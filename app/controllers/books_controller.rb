@@ -1,17 +1,14 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery :except => [:api_create]
 
   # GET /books
-  # GET /books.json
   def index
     @books = Book.all
-    render json: @books
   end
 
   # GET /books/1
-  # GET /books/1.json
   def show
-    render json: @book
   end
 
   # GET /books/new
@@ -24,7 +21,6 @@ class BooksController < ApplicationController
   end
 
   # POST /books
-  # POST /books.json
   def create
     @book = Book.new(book_params)
 
@@ -63,11 +59,55 @@ class BooksController < ApplicationController
     end
   end
 
+#### Actions for API ####
+
+  def api_index
+    @books = Book.all
+    render json: @books
+  end
+
+  def api_isbn
+    @books = Book.select{|book| book.isbn == params[:isbn]}
+    render json: @books
+  end
+
+  def api_show
+    @book = Book.find(params[:id])
+    render json: @book
+  end
+
+  def api_create
+    @book = Book.new(book_params)
+    respond_to do |format|
+      save(@book)
+    end
+  end
+
+  def api_borrow
+    @book = Book.find(params[:id])
+    @book['holder'] = params[:user]
+    save(@book)
+  end
+
+  def api_return
+    @book = Book.find(params[:id])
+    @book['holder'] = 'office@r-learning.co.jp'
+    save(@book)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
     end
+
+    def save(book)
+      if @book.save
+        format.json { render :show, status: :created, location: @book }
+      else
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
