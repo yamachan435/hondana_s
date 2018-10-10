@@ -1,6 +1,13 @@
 class BookInfosController < ApplicationController
   before_action :set_book_info, only: [:show, :edit, :update, :destroy]
 
+
+  def newisbn
+    @book_info = BookInfo.new
+    @book_info[:isbn] = params[:isbn]
+  end
+
+
   # GET /book_infos
   # GET /book_infos.json
   def index
