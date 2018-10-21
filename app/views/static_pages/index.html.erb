@@ -1,0 +1,25 @@
+<h1>Hondana</h1>
+<p>ようこそ。<br />現在、HOGEとしてログインしています。</p>
+<div class="container">
+  <div class="row">
+    <%= link_to '#', class: 'btn btn-sm btn-default btn-icon' do %>
+      <%= image_tag("rental.png", alt:"Rental", size: "64x64")  %>
+      貸出・返却
+    <% end %>
+    <%= link_to '#', class: 'btn btn-default btn-icon' do %>
+      <%= image_tag("new.png", alt:"Rental", size: "64x64")  %>
+      新規登録 
+    <% end %>
+  </div>
+  <div class="row">
+    <%= link_to '#', class: 'btn btn-sm btn-default btn-icon' do %>
+      <%= image_tag("search.png", alt:"Rental", size: "64x64")  %>
+      蔵書検索
+    <% end %>
+    <%= link_to '#', class: 'btn btn-default btn-icon' do %>
+      <%= image_tag("list.png", alt:"Rental", size: "64x64")  %>
+      貸出中リスト
+    <% end %>
+  </div>
+</div>
+

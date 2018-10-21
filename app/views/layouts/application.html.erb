@@ -10,6 +10,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <div class="container fluid">
+      <div class="row">
+        <div class="clearfix"></div>
+        <div class="col-sm-3 col-md-2 sidebar">
+          <%= render 'layouts/menu' %>
+        </div>
+        <div class="col-sm-9 col-md-10 main">
+          <%= yield %> 
+        </div>
+      </div>
+    </div>  
   </body>
 </html>

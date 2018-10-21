@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+	
+
   resources :book_infos
   resources :books
+
+  root 'static_pages#index'
 
   get '/api/books', to: 'books#api_index'
   get '/api/books/:id', to: 'books#api_show'
