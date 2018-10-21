@@ -1,0 +1,41 @@
+<div class="row">
+  <%= image_tag("new.png", alt: @data[:infos][0].title) %>
+</div>
+<div class="row">
+  <div class="col-xs-8">
+    <div class="row">
+      <div class="col-xs-2">ISBN</div>
+      <div class="col-xs-10"><%= @data[:infos][0].title %></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">タイトル</div>
+      <div class="col-xs-10"><%= @data[:infos][0].title %></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">著者</div>
+      <div class="col-xs-10"><%= @data[:infos][0].author %></div>
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="row">
+      <div class="col-xs-8">登録数</div>
+      <div class="col-xs-4"><strong><%= @data[:books].size %></strong></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-8">貸出中</div>
+      <div class="col-xs-4"><strong><%= @data[:books].size %></strong></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-8">貸出可能</div>
+      <div class="col-xs-4"></strong><%= @data[:books].size %></strong></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <button class="btn btn-primary btn-lg">借りる</button>
+      </div>
+      <div class="col-xs-6">
+        <button class="btn btn-primary btn-lg">返す</button>
+      </div>
+    </div>
+  </div>
+</div>

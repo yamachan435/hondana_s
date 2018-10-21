@@ -2,6 +2,37 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   protect_from_forgery :except => [:api_create]
 
+  def isbn
+    @books = Book.select{|book| book.isbn == params[:isbn]}
+    @book_infos = BookInfo.select{|book_info| book_info.isbn == params[:isbn]}
+    @data = {books: @books, infos: @book_infos}
+    render @data 
+  end
+
+  def show
+    @book = Book.find(params[:id])
+    render json: @book
+  end
+
+  def create
+    @book = Book.new(book_params)
+    respond_to do |format|
+      save(@book)
+    end
+  end
+
+  def borrow
+    @book = Book.find(params[:id])
+    @book['holder'] = params[:user]
+    save(@book)
+  end
+
+  def return
+    @book = Book.find(params[:id])
+    @book['holder'] = 'office@r-learning.co.jp'
+    save(@book)
+  end
+
   # GET /books
   def index
     @books = Book.all
