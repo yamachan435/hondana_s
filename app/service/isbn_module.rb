@@ -2,7 +2,7 @@ require 'faraday'
 require 'rexml/document'
 require 'open-uri'
 
-class BookInfo 
+module BookInfoFromDB 
   NDL_EP = 'http://iss.ndl.go.jp'
   OPENBD_EP = 'http://cover.openbd.jp'
   attr_reader :title, :author

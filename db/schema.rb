@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_09_152839) do
+ActiveRecord::Schema.define(version: 2018_10_15_053819) do
 
   create_table "book_infos", force: :cascade do |t|
     t.string "isbn"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 2018_10_09_152839) do
     t.string "holder"
     t.string "registerer"
     t.date "duedate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "isbn"
+    t.binary "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
