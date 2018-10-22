@@ -1,5 +1,5 @@
 <h1>Hondana</h1>
-<p>ようこそ。<br />現在、HOGEとしてログインしています。</p>
+<p>ようこそ。<br />現在、<%= current_user.name %>としてログインしています。</p>
 <div class="container">
   <div class="row">
     <%= link_to rental_path, class: 'btn btn-sm btn-default btn-icon' do %>
