@@ -10,23 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_22_124632) do
+ActiveRecord::Schema.define(version: 2018_10_23_132958) do
 
-  create_table "book_infos", force: :cascade do |t|
-    t.string "isbn"
+  create_table "books", force: :cascade do |t|
+    t.string "isbn", limit: 13
     t.string "title"
     t.string "author"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.string "isbn"
-    t.string "holder"
-    t.string "registerer"
-    t.date "duedate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["isbn"], name: "index_books_on_isbn", unique: true
   end
 
   create_table "images", force: :cascade do |t|
@@ -34,6 +26,16 @@ ActiveRecord::Schema.define(version: 2018_10_22_124632) do
     t.binary "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer "book_id"
+    t.string "holder", default: "office@r-learning.co.jp"
+    t.string "registerer"
+    t.date "duedate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_stocks_on_book_id"
   end
 
   create_table "users", force: :cascade do |t|

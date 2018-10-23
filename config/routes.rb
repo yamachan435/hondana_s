@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   get 'sessions/new'
-  resources :book_infos
-  resources :books
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
@@ -13,16 +11,11 @@ Rails.application.routes.draw do
 
   root 'static_pages#index'
   get '/rental', to: 'static_pages#rental'
-
-  get '/books', to: 'books#index'
-  get '/books/:id', to: 'books#show'
-  post '/books', to: 'books#create'
-  get '/books/isbn/:isbn', to: 'books#isbn'
-  post '/books/borrow', to: 'books#borrow'
-  post '/books/return', to: 'books#return'
-  get '/books/search/:field/:q', to: 'books#search'
-  get '/books/list/:user', to: 'books#list'
-
+  
+  get '/books/find', to: 'books#find'
+  get '/books/:id', to: 'books#show', as: 'book'
+  #TODO: as節の必要性
+  patch 'books/:id', to: 'books#update'
 
   get '/api/books', to: 'books#api_index'
   get '/api/books/:id', to: 'books#api_show'

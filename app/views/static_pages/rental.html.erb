@@ -1,3 +1,4 @@
-<p>ISBN検索フォームを作る。</p>
-<p><a href="./books/isbn/9784873117430">その後のイメージ</a></p>
-<h1>貸出・返却</h1>
+<%= form_tag('/books/find', method: :get) do %>
+  <%= text_field_tag 'isbn' %>
+  <%= submit_tag %>
+<% end %>

@@ -1,24 +1,2 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Isbn:</strong>
-  <%= @book.isbn %>
-</p>
-
-<p>
-  <strong>Holder:</strong>
-  <%= @book.holder %>
-</p>
-
-<p>
-  <strong>Registerer:</strong>
-  <%= @book.registerer %>
-</p>
-
-<p>
-  <strong>Duedate:</strong>
-  <%= @book.duedate %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<p><%= @book.inspect %></p>
+<p><%= @stocks.inspect %></p>
