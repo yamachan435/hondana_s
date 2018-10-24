@@ -6,7 +6,7 @@ module IsbnInfoService
   NDL_EP = 'http://iss.ndl.go.jp'
   OPENBD_EP = 'http://cover.openbd.jp'
 
-  def fetch 
+  def fetch_info 
     conn = Faraday::Connection.new(NDL_EP) do |b|
       b.use Faraday::Request::UrlEncoded
       b.use Faraday::Adapter::NetHttp
@@ -26,11 +26,11 @@ module IsbnInfoService
   end
 
   def fetch_image(path = './')
-    open(OPENBD_EP + '/' + @isbn + '.jpg') do |img|
-      File.open(path + @isbn + '.jpg', 'wb') do |file|
-        file.puts img.read
-      end
-    end
+       open(OPENBD_EP + '/' + (isbn.to_s) + '.jpg') do |img|
+         File.open(path + id.to_s + '.jpg', 'wb') do |file|
+           file.puts img.read
+         end
+       end
   end
 end
 

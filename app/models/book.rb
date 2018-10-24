@@ -44,4 +44,9 @@ class Book < ApplicationRecord
     stocks.select {|stock| stock.holder == user.email}.first.return
     return true
   end
+
+  def fetch
+    fetch_info
+    fetch_image("./app/assets/images/covers/")
+  end
 end

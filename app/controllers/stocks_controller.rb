@@ -10,7 +10,8 @@ class StocksController < ApplicationController
     @stock.registerer = current_user.email
     @duedate = nil
     if @stock.save
-      obj_book.fetch if obj_book.title == nil
+      #obj_book.fetch if obj_book.title == nil
+      obj_book.fetch
       flash[:success] = "登録が完了しました。"
     else
       flash[:danger] = "登録できませんでした。"
