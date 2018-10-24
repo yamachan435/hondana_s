@@ -36,5 +36,4 @@ Rails.application.routes.draw do
   put 'images/:id/upload' => 'images#upload'
   get '/api/images/:isbn' => "images#api_isbn"
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
