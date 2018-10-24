@@ -10,12 +10,14 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   root 'static_pages#index'
-  get '/rental', to: 'static_pages#rental'
+  get '/rental', to: 'static_pages#rental', as: 'rental'
   
   get '/books/find', to: 'books#find'
   get '/books/:id', to: 'books#show', as: 'book'
   #TODO: as節の必要性
   patch 'books/:id', to: 'books#update'
+
+  resources :stocks, only: [:new, :create]
 
   get '/api/books', to: 'books#api_index'
   get '/api/books/:id', to: 'books#api_show'

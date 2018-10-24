@@ -2,6 +2,17 @@ class Book < ApplicationRecord
   validates :isbn, presence: true, uniqueness: true, length: { is: 13}
   has_many :stocks
 
+  include IsbnInfoService
+
+  def self.obtain(isbn)
+    if Book.exists?(isbn: isbn)
+      Book.find_by(isbn: isbn)
+    else
+      Book.new(isbn: isbn).save
+      Book.last
+    end
+  end
+      
   def stock_all
     stocks.size
   end
@@ -28,8 +39,8 @@ class Book < ApplicationRecord
     return true
   end
 
-  def return
-    return false unless returnable?
+  def return(user)
+    return false unless returnable?(user)
     stocks.select {|stock| stock.holder == user.email}.first.return
     return true
   end

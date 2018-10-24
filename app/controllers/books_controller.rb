@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    case params[:operation]
+    case params[:operation].to_sym
     when :borrow
       if @book.borrow(current_user)
         flash[:success] = "貸出処理が完了しました。"
@@ -21,7 +21,7 @@ class BooksController < ApplicationController
         flash[:danger] = "その本は借りられません！"
       end 
     when :return
-      if @book.return
+      if @book.return(current_user)
         flash[:success] = "返却処理が完了しました。"
       else
         flash[:danger] = "その本は返せません！"

@@ -1,2 +1,57 @@
-<p><%= @book.inspect %></p>
-<p><%= @stocks.inspect %></p>
+<div class="row">
+  <div class="col-md-8">
+    <img src="#" />
+  </div>
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-4">ISBN</div>
+      <div class="col-md-8">
+        <%= @book.isbn %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">タイトル</div>
+      <div class="col-md-8">
+        <%= @book.title %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">著者</div>
+      <div class="col-md-8">
+        <%= @book.author %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">登録数</div>
+      <div class="col-md-4">
+        <%= @book.stock_all %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">貸出可能</div>
+      <div class="col-md-4">
+        <%= @book.stock_available %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">貸出中</div>
+      <div class="col-md-4">
+        <%= @book.stock_onloan %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <%= form_for(@book) do |f| %>
+          <%= hidden_field_tag :operation, "borrow" %>
+          <%= f.submit "借りる", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="col-xs-6">
+        <%= form_for(@book) do |f| %>
+          <%= hidden_field_tag :operation, "return" %>
+          <%= f.submit "返す", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
