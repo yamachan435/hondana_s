@@ -26,7 +26,7 @@ class BooksController < ApplicationController
       else
         flash[:danger] = "その本は返せません！"
       end 
-      redirect_to rental_path
     end
+    redirect_to rental_path
   end
 end
