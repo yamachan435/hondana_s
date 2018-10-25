@@ -1,4 +1,14 @@
-<%= form_tag('/books/find', method: :get) do %>
-  <%= text_field_tag 'isbn' %>
-  <%= submit_tag %>
-<% end %>
+<h2>貸出・返却</h2>
+<div class="row">
+  <p>貸出・返却を行う本のISBNコードを入力してください。</p>
+</div>
+<div class="row">
+  <%= form_tag('/books/find', method: :get) do %>
+    <div class="col-md-10">
+      <%= text_field_tag 'isbn' %>
+    </div>
+    <div class="col-md-2">
+      <%= submit_tag "確認", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

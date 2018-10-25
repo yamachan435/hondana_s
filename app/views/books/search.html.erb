@@ -1,0 +1,15 @@
+<h2>蔵書検索</h2>
+<div class="row">
+  <p>ISBNコードを入力してください。</p>
+</div>
+<div class="row">
+  <%= form_tag('/books/result', method: :get) do %>
+    <div class="col-md-10">
+      <%= text_field_tag :q %>
+      <%= hidden_field_tag :t, "isbn" %>
+    </div>
+    <div class="col-md-2">
+      <%= submit_tag "確認", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

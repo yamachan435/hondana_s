@@ -26,11 +26,11 @@ module IsbnInfoService
   end
 
   def fetch_image(path = './')
-       open(OPENBD_EP + '/' + (isbn.to_s) + '.jpg') do |img|
-         File.open(path + id.to_s + '.jpg', 'wb') do |file|
-           file.puts img.read
-         end
-       end
+   open(OPENBD_EP + '/' + (isbn.to_s) + '.jpg') do |img|
+     File.open(path + id.to_s + '.jpg', 'wb') do |file|
+       file.puts img.read
+     end
+   end
   end
 end
 

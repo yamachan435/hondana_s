@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get '/rental', to: 'static_pages#rental', as: 'rental'
   
+  get '/books/search', to: 'books#search'
+  get '/books/result', to: 'books#result'
   get '/books/find', to: 'books#find'
   get '/books/:id', to: 'books#show', as: 'book'
   #TODO: as節の必要性

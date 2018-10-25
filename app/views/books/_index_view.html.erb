@@ -1,0 +1,21 @@
+<% @books.each do |book| %>
+  <div class="panel panel-default">
+    <div class="panel panel-body">
+      <div class="col-xs-10">
+        <div class="row">
+          <%= book.title %>
+        </div>
+        <div class="row">
+          <%= book.author %>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <% if book.borrowable? %>
+          <%= button_to "貸出可能", book, {method: :get, class:'btn btn-info'} %>
+        <% else %>
+          <%= button_to "貸出不可", book, {method: :get, class:'btn btn-warning'} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

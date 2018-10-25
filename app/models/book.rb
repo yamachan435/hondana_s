@@ -12,6 +12,28 @@ class Book < ApplicationRecord
       Book.last
     end
   end
+
+  def self.search(type, query)
+    case query
+    when ""
+      raise
+    when nil
+      raise
+    else
+      reg = Regexp.compile(".*" + query + ".*")
+    end
+
+    case type
+    when :isbn
+      Book.all.select {|book| reg.match?(book.isbn) }
+    when :title
+      Book.all.select {|book| reg.match?(book.title) }
+    when :author
+      Book.all.select {|book| reg.match?(book.author) }
+    else
+      raise
+    end
+  end
       
   def stock_all
     stocks.size

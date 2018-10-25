@@ -1,4 +1,21 @@
-<%= form_tag('/stocks', method: :post) do %>
-  <%= text_field_tag 'isbn' %>
-  <%= submit_tag %>
-<% end %>
+<h2>新規登録</h2>
+<div class="row">
+  <p>登録する本のISBNコードを入力してください。</p>
+  <div>
+    ヒント：
+    <ul>
+      <li>ISBNコードは多くの場合、裏表紙に印字されています。</li>
+      <li>ISBNコードは、[978]などから始まる13桁で構成されます。</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <%= form_tag('/stocks', method: :post) do %>
+    <div class="col-md-10">
+      <%= text_field_tag 'isbn' %>
+    </div>
+    <div class="col-md-2">
+      <%= submit_tag "新規登録", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

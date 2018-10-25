@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-6">
+    <%= form_for(@book) do |f| %>
+      <%= hidden_field_tag :operation, "borrow" %>
+      <%= f.submit "借りる", class: "btn btn-primary",
+                             disabled: !@book.borrowable? %>
+    <% end %>
+  </div>
+  <div class="col-xs-6">
+    <%= form_for(@book) do |f| %>
+      <%= hidden_field_tag :operation, "return" %>
+      <%= f.submit "返す", class: "btn btn-primary",
+                           disabled: !@book.returnable?(current_user) %>
+    <% end %>
+  </div>
+</div>

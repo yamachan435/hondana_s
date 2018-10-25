@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-xs-4">ISBN</div>
+  <div class="col-xs-8">
+    <%= @book.isbn %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4">タイトル</div>
+  <div class="col-xs-8">
+    <%= @book.title %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4">著者</div>
+  <div class="col-xs-8">
+    <%= @book.author %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-8">登録数</div>
+  <div class="col-xs-4">
+    <strong><%= @book.stock_all %></strong>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-8">貸出可能</div>
+  <div class="col-xs-4">
+    <strong><%= @book.stock_available %></strong>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-8">貸出中</div>
+  <div class="col-xs-4">
+    <strong><%= @book.stock_onloan %></strong>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<h2>蔵書検索</h2>
+<% if @books.size == 0 %>
+  <p>お探しの条件では見つかりませんでした。</p>
+<% else %>
+  <%= render 'index_view' %>
+<% end %>
