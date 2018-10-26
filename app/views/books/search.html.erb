@@ -6,7 +6,11 @@
   <%= form_tag('/books/result', method: :get) do %>
     <div class="col-md-10">
       <%= text_field_tag :q %>
-      <%= hidden_field_tag :t, "isbn" %>
+      <div class="row">
+        <div class="col-md-4"><%= radio_button_tag :t, 'isbn' %>ISBN</div>
+        <div class="col-md-4"><%= radio_button_tag :t, 'title' %>タイトル</div>
+        <div class="col-md-4"><%= radio_button_tag :t, 'author' %>著者</div>
+      </div>
     </div>
     <div class="col-md-2">
       <%= submit_tag "確認", class: "btn btn-primary" %>
