@@ -6,9 +6,9 @@ class StocksController < ApplicationController
   def create
     obj_book = Book.obtain(params[:isbn])
     @stock = obj_book.stocks.build 
-    @stock.holder = "office@r-learning.co.jp"
-    @stock.registerer = current_user.email
+    @stock.registerer = current_user
     @duedate = nil
+    logger.debug @stock.inspect
     if @stock.save
       #obj_book.fetch if obj_book.title == nil
       obj_book.fetch

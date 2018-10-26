@@ -16,7 +16,7 @@
       <%= image_tag("search.png", alt:"Rental", size: "64x64")  %>
       蔵書検索
     <% end %>
-    <%= link_to '#', class: 'btn btn-default btn-icon' do %>
+    <%= link_to users_borrowing_list_path(current_user), class: 'btn btn-default btn-icon' do %>
       <%= image_tag("list.png", alt:"Rental", size: "64x64")  %>
       貸出中リスト
     <% end %>

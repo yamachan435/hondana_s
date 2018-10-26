@@ -1,0 +1,21 @@
+<% @borrowing_list.each do |stock| %>
+  <% @status = stock.duedate <= Date.today ? 'danger' : 'info' %> 
+  <div class="panel panel-<%= @status %>">
+    <div class="panel panel-body">
+      <div class="col-xs-10">
+        <div class="row">
+          <%= stock.book.title %>
+        </div>
+        <div class="row">
+          <%= stock.book.author %>
+        </div>
+        <div class="row">
+          返却期限：<strong class="text-<%= @status %>"><%= stock.duedate %></strong>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <%= button_to "確認", stock.book, {method: :get, class: "btn btn-#{@status}"} %>
+      </div>
+    </div>
+  </div>
+<% end %>

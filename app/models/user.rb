@@ -7,4 +7,12 @@ class User < ApplicationRecord
                     uniqueness: {case_sensitive: false}
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}
+  has_many :borrowings, class_name: "Stock",
+                        foreign_key: "holder",
+                        dependent: :restrict_with_exception
+  has_many :contributions, class_name: "Stock",
+                        foreign_key: "registerer",
+                        dependent: :nullify
+
+
 end

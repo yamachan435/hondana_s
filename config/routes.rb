@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
+  get '/users/borrowing_list/:id', to: 'users#borrowing_list', as: 'users_borrowing_list'
   resources :users
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'

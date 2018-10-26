@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def borrowing_list
+    user = User.find(params[:id])
+    @borrowing_list = user.borrowings
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password,

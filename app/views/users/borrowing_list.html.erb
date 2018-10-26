@@ -1,0 +1,6 @@
+<h2>貸出中リスト</h2>
+<% if @borrowing_list.size == 0 %>
+  <p>貸出中の本はありません。</p>
+<% else %>
+  <%= render 'book_index_view' %>
+<% end %>

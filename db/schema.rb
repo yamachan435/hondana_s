@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_23_132958) do
+ActiveRecord::Schema.define(version: 2018_10_26_130259) do
 
   create_table "books", force: :cascade do |t|
     t.string "isbn", limit: 13
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2018_10_23_132958) do
 
   create_table "stocks", force: :cascade do |t|
     t.integer "book_id"
-    t.string "holder", default: "office@r-learning.co.jp"
-    t.string "registerer"
+    t.integer "holder_id"
+    t.integer "registerer_id"
     t.date "duedate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -40,11 +40,11 @@ class Book < ApplicationRecord
   end
 
   def stock_available
-    stocks.count {|stock| stock.holder == 'office@r-learning.co.jp' }
+    stocks.count {|stock| stock.holder.nil? }
   end
 
   def stock_onloan
-    stocks.count {|stock| stock.holder != 'office@r-learning.co.jp' }
+    stocks.count {|stock| !stock.holder.nil? }
   end
 
   def borrowable?
@@ -52,18 +52,18 @@ class Book < ApplicationRecord
   end
 
   def returnable?(user)
-    stocks.count {|stock| stock.holder == user.email } > 0
+    stocks.count {|stock| stock.holder == user } > 0
   end
 
   def borrow(user)
     return false unless borrowable?
-    stocks.select {|stock| stock.holder == 'office@r-learning.co.jp'}.first.borrow(user)
+    stocks.select {|stock| stock.holder.nil? }.first.borrow(user)
     return true
   end
 
   def return(user)
     return false unless returnable?(user)
-    stocks.select {|stock| stock.holder == user.email}.first.return
+    stocks.select {|stock| stock.holder == user }.first.return
     return true
   end
 
