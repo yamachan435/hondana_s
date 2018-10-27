@@ -13,10 +13,11 @@ class StocksController < ApplicationController
       #obj_book.fetch if obj_book.title == nil
       obj_book.fetch
       flash[:success] = "登録が完了しました。"
+      redirect_to obj_book
     else
       flash[:danger] = "登録できませんでした。"
+      redirect_to rental_path
     end
-    redirect_to root_path
   end
 
 end
