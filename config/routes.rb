@@ -22,6 +22,10 @@ Rails.application.routes.draw do
 
   resources :stocks, only: [:new, :create]
 
+  get '/make', to: 'notifications#make'
+  #TODO: パスは適当。変えたほうがいい。
+  resources :notifications, only: [:destroy]
+
   get '/api/books', to: 'books#api_index'
   get '/api/books/:id', to: 'books#api_show'
   post '/api/books', to: 'books#api_create'

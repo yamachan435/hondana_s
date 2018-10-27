@@ -1,0 +1,13 @@
+<% if current_user.notifications.size == 0 %>
+  <div>現在、お知らせはありません。</div>
+<% else %>
+  <div><%= current_user.name %>さんへのお知らせが<strong><%= current_user.notifications.size %></strong>件あります。</div>
+  <% current_user.notifications.each do |notification| %>
+    <div class="panel panel-default notification">
+      <div class="panel-body">
+        <%= link_to notification.content, notification.link %>
+        <%= link_to "×", notification_path(notification), method: :delete, class:"btn btn-danger btn-close pull-right" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -23,6 +23,10 @@ textarea {
   margin-bottom: 10px;
 }
 
+.btn-close {
+  padding: 1px 8px;
+}
+
 /* header */
 
 #logo {
@@ -54,3 +58,9 @@ aside#sidebar {
   width: 200px;
 }
 
+.notification {
+  margin-bottom: 10px;
+  .panel-body {
+    padding: 2px 15px;
+  }
+}

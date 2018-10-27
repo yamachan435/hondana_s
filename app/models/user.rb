@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :contributions, class_name: "Stock",
                         foreign_key: "registerer",
                         dependent: :nullify
+  has_many :notifications, dependent: :nullify
 
 
 end

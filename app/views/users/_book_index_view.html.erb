@@ -1,7 +1,7 @@
 <% @borrowing_list.each do |stock| %>
-  <% @status = stock.duedate <= Date.today ? 'danger' : 'info' %> 
+  <% @status = {Stock::DUE_VALID => "info", Stock::DUE_NEAR => "warning", Stock::DUE_EXPIRED => "danger"}[stock.due] %> 
   <div class="panel panel-<%= @status %>">
-    <div class="panel panel-body">
+    <div class="panel-body">
       <div class="col-xs-10">
         <div class="row">
           <%= stock.book.title %>

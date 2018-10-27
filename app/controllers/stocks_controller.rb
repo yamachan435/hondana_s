@@ -13,6 +13,7 @@ class StocksController < ApplicationController
       #obj_book.fetch if obj_book.title == nil
       obj_book.fetch
       flash[:success] = "登録が完了しました。"
+      Notification.make_arrival_notifications(obj_book)
       redirect_to obj_book
     else
       flash[:danger] = "登録できませんでした。"
