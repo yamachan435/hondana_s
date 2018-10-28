@@ -16,6 +16,8 @@
         <div class="clearfix"></div>
         <% if current_user.nil? %>
           <div class="col-md-12">
+            <%= yield %>
+          </div>
         <% else %>
           <div class="col-md-3">
             <%= render 'layouts/menu' %>

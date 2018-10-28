@@ -1,7 +1,7 @@
 <% if current_user.notifications.size == 0 %>
   <div>現在、お知らせはありません。</div>
 <% else %>
-  <div><%= current_user.name %>さんへのお知らせが<strong><%= current_user.notifications.size %></strong>件あります。</div>
+  <p><%= current_user.name %>さんへのお知らせが<strong><%= current_user.notifications.size %></strong>件あります。</p>
   <% current_user.notifications.each do |notification| %>
     <div class="panel panel-default notification">
       <div class="panel-body">
