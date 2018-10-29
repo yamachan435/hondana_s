@@ -16,10 +16,8 @@ Rails.application.routes.draw do
   get '/books/search', to: 'books#search'
   get '/books/result', to: 'books#result'
   get '/books/find', to: 'books#find'
-  get '/books/:id', to: 'books#show', as: 'book'
-  #TODO: as節の必要性
-  patch 'books/:id', to: 'books#update'
 
+  resources :books, only: [:show, :update]
   resources :stocks, only: [:new, :create]
 
   get '/make', to: 'notifications#make'

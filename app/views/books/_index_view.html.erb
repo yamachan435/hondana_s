@@ -10,7 +10,9 @@
         </div>
       </div>
       <div class="col-xs-2">
-        <% if book.borrowable? %>
+        <% if book.id.nil? %>
+          <%= button_to "未登録", "", {method: :get, class: 'btn btn-default'} %>
+        <% elsif book.borrowable? %>
           <%= button_to "貸出可能", book, {method: :get, class:'btn btn-info'} %>
         <% else %>
           <%= button_to "貸出不可", book, {method: :get, class:'btn btn-warning'} %>

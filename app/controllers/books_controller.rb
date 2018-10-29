@@ -46,13 +46,15 @@ class BooksController < ApplicationController
   end
 
   def result
-    begin
-      @books = Book.search(params[:t].to_sym, params[:q])
-    rescue => e
-      logger.error e.message
-      flash[:danger] = "検索パラメータが不正です。"
-      redirect_to books_search_path
-    end
+    @books = Book.new_search_array(params[:t].to_sym, params[:q])
+
+#     begin
+#       @books = Book.search(params[:t].to_sym, params[:q])
+#     rescue => e
+#       logger.error e.message
+#       flash[:danger] = "検索パラメータが不正です。"
+#       redirect_to books_search_path
+#     end
   end
 
 end
