@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def borrowing_list
     user = User.find(params[:id])
-    @borrowing_list = user.borrowings
+    @borrowing_list = user.borrowings.sort_by{|stock| stock.duedate}
   end
 
   private
