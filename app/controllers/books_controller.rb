@@ -46,8 +46,11 @@ class BooksController < ApplicationController
   end
 
   def result
-    @books = Book.new_search_array(params[:t].to_sym, params[:q])
-
+    if params[:r]
+      @books = Book.new_search_array(params[:t].to_sym, params[:q])
+    else
+      @books = Book.search(params[:t].to_sym, params[:q])
+    end
 #     begin
 #       @books = Book.search(params[:t].to_sym, params[:q])
 #     rescue => e

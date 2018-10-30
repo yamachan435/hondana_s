@@ -13,27 +13,6 @@ class Book < ApplicationRecord
     end
   end
 
-#   def self.search(type, query)
-#     case query
-#     when ""
-#       raise
-#     when nil
-#       raise
-#     else
-#       reg = Regexp.compile(".*" + query + ".*")
-#     end
-# 
-#     case type
-#     when :isbn
-#       Book.all.select {|book| reg.match?(book.isbn) }
-#     when :title
-#       Book.all.select {|book| reg.match?(book.title) }
-#     when :author
-#       Book.all.select {|book| reg.match?(book.author) }
-#     else
-#       raise
-#     end
-#   end
       
 
   def stock_all
@@ -74,29 +53,51 @@ class Book < ApplicationRecord
   end
 
     NDL_EP = 'http://iss.ndl.go.jp'
+    NDL_TYPE_HASH = {isbn: 'isbn', title: 'title', author: 'creator'}
+
   class << self
+    def search(type, query)
+      case query
+      when ""
+        raise
+      when nil
+        raise
+      else
+        reg = Regexp.compile(".*" + query + ".*")
+      end
+
+      case type
+      when :isbn
+        Book.all.select {|book| reg.match?(book.isbn) }
+      when :title
+        Book.all.select {|book| reg.match?(book.title) }
+      when :author
+        Book.all.select {|book| reg.match?(book.author) }
+      else
+        raise
+      end
+    end
+
     def new_search_array(type, query)
-      p "haitta!!!!!!!!!!!"
 
       conn = Faraday::Connection.new(NDL_EP) do |b|
         b.use Faraday::Request::UrlEncoded
         b.use Faraday::Adapter::NetHttp
       end
-
-      hash = {metiatype: "1", type.to_sym => query.tr("　"," ")}
+    
+      hash = {metiatype: "1", NDL_TYPE_HASH[type].to_sym => query.tr("　"," ")}
         res = conn.get '/api/opensearch', hash
         doc = REXML::Document.new(res.body)
    
       i = 1
       search_array = Array.new
       until (doc.elements["rss/channel/item[#{i}]"].nil?) do
-        p "#{i}kaime!"
         elm = doc.elements["rss/channel/item[#{i}]"]
         unless elm.elements["dc:identifier[@xsi:type='dcndl:ISBN']"].nil?
           isbn = elm.elements["dc:identifier[@xsi:type='dcndl:ISBN']"].text
           title = elm.elements["title"].nil? ? "" : elm.elements["title"].text
           author = elm.elements["author"].nil? ? "" : elm.elements["author"].text
-
+          
           book = Book.new
           book.isbn = isbn
           book.title = title
@@ -106,14 +107,9 @@ class Book < ApplicationRecord
         i += 1
       end
 
-      p search_array
-
       search_array.map! do |book|
         Book.all.find_by(isbn: book.isbn) || book
       end
-
-      p search_array
-
       search_array.sort_by! do |book|
         if book.id.nil?
           3
@@ -125,8 +121,6 @@ class Book < ApplicationRecord
       end
 
       p search_array
-          
-      
       return search_array 
     end
   end

@@ -6,7 +6,13 @@
       <%= text_field_tag :q, "", class: "form-control" %>
       <%= label_tag (:q) { "検索対象" } %>
       <%= select_tag :t, options_for_select([["ISBN", "isbn"], ["タイトル", "title"], ["著者", "author"]]), class: "form-control" %>
-      <%= submit_tag "確認", class: "btn btn-primary" %>
+      <p>
+        <label class="form-inline">
+          <%= check_box_tag :r, true, false, class: "form-control" %>
+          本棚に登録のない本も検索する（時間がかかります） 
+        </label>
+        </p>
+      <%= submit_tag "検索", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
