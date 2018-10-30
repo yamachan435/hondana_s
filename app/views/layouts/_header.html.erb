@@ -12,7 +12,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#"><%= current_user.name %></a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">ログアウト</a>
+              <%= link_to "ログアウト", logout_path, {method: :delete, class: "dropdown-item"} %>
             </div>
           </li>
         <% end %>
